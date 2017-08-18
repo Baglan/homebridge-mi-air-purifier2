@@ -10,13 +10,9 @@ This is Xiaomi Mi Air Purifier plugin for [Homebridge](https://github.com/nfarin
 
 * Control modes:
 
-  - `Idle / Off`: Lift fan speed to 0% from Home app.
-
-  - `Auto`: Lift fan speed between 1 - 60%.
-
-  - `Silent`: Lift fan speed between 61 - 80%.
-
-  - `Favorite / High`: Lift fan speed great than 80%.
+  - On/Off
+  
+  - Fan speed from 0 to 100%
 
     **Notes:** Alternatively, you can ask Siri to change the fan speed within the range to adjust the air purifier mode. Example:
 
