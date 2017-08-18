@@ -39,7 +39,7 @@ This is Xiaomi Mi Air Purifier plugin for [Homebridge](https://github.com/nfarin
 1. Install required packages.
 
    ```
-   npm install -g homebridge-mi-air-purifier miio
+   npm install -g homebridge-mi-air-purifier2 miio
    ```
 
    ​
@@ -68,7 +68,4 @@ This is Xiaomi Mi Air Purifier plugin for [Homebridge](https://github.com/nfarin
 
 ### License
 
-See the [LICENSE](https://github.com/seikan/homebridge-mi-air-purifier/blob/master/LICENSE.md) file for license rights and limitations (MIT).
-
-
-
+See the [LICENSE](https://github.com/djchen/homebridge-mi-air-purifier/blob/master/LICENSE.md) file for license rights and limitations (MIT).
