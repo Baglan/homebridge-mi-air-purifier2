@@ -19,11 +19,6 @@ function MiAirPurifier(log, config) {
 
 	this.services = [];
 
-	// Modes supported
-	this.modes = [
-		[0, 'idle'], [60, 'auto'], [80, 'silent'], [100, 'favorite']
-	];
-
 	// Air purifier is not available in Homekit yet, register as Fan
 	this.fanService = new Service.Fan(this.name);
 
@@ -44,7 +39,7 @@ function MiAirPurifier(log, config) {
 	this.serviceInfo
 		.setCharacteristic(Characteristic.Manufacturer, 'Xiaomi')
 		.setCharacteristic(Characteristic.Model, 'Air Purifier');
-	
+
 	this.services.push(this.serviceInfo);
 
 	if(this.showAirQuality){
@@ -89,7 +84,7 @@ MiAirPurifier.prototype = {
 
 		// Discover device in the network
 		var browser = miio.browse();
-		
+
 		browser.on('available', function(reg){
 			// Skip device without token
 			if(!reg.token)
@@ -112,7 +107,7 @@ MiAirPurifier.prototype = {
 				return;
 
 			var device = devices[reg.id];
-			
+
 			if(!device)
 				return;
 
@@ -155,12 +150,10 @@ MiAirPurifier.prototype = {
 			return;
 		}
 
-		for(var item of this.modes){
-			if(this.device.mode == item[1]){
-				callback(null, item[0]);
-				return;
-			}
+		if (this.device.mode != 'favorite') {
+			this.device.setMode('favorite');
 		}
+		callback(null, this.device.favoriteLevel*6.25);
 	},
 
 	setRotationSpeed: function(speed, callback) {
@@ -169,13 +162,8 @@ MiAirPurifier.prototype = {
 			return;
 		}
 
-		for(var item of this.modes){
-			if(speed <= item[0]){
-				this.log.debug('Set mode: ' + item[1]);
-				this.device.setMode(item[1]);
-				break;
-			}
-		}
+		this.device.setMode('favorite');
+		this.device.setFavoriteLevel(Math.ceil(speed/6.25));
 
 		callback();
 	},
