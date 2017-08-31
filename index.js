@@ -150,7 +150,7 @@ MiAirPurifier.prototype = {
 			return;
 		}
 
-		if (this.device.mode != 'favorite') {
+		if (this.device.mode != 'favorite' && this.device.mode != 'idle') {
 			this.device.setMode('favorite');
 		}
 		callback(null, this.device.favoriteLevel*6.25);
